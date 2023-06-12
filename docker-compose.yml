@@ -1,0 +1,30 @@
+# Localhost Docker Compose fil for 2. semester på datamatiker uddannelsen i Lyngby efteråret 2023
+# Opretter en container: 
+# db: Postgresql data base server som kører på port 5432
+
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:latest
+    container_name: db
+    mem_limit: 1536MB
+    mem_reservation: 1024MB
+    restart: unless-stopped
+    networks:
+      - backend
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: change_this_to_something_complex # Change this password and pick a hard one
+    volumes:
+      - ./data:/var/lib/postgresql/data/
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+networks:
+  backend:
+    name: backend
+    internal: false # in production, it should be true if you don't want to expose this network to the outside world
+    driver: bridge
