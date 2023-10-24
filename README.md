@@ -14,20 +14,22 @@
 
 ## Setup
 
-### 1. Find på et godt Postgres password i docker-compose.yml filen:
+### 1. Klon dette repository til din Droplet
+
+### 2. Find på et godt Postgres password i docker-compose.yml filen:
 
 ```bash
 POSTGRES_USER: postgres
 POSTGRES_PASSWORD: <dit_sikre_password> 
 ```
 
-### 2. Kør Docker
+### 3. Kør Docker
 
 ```bash
   docker-compose up -d
 ```
 
-### 3. Tilføj den nye remote Postgres server i PgAdmin (på din lokale maskine)
+### 4. Tilføj den nye remote Postgres server i PgAdmin (på din lokale maskine)
 
 - Host name/address: <dit IP nummer på Dropletten>
 - Port: 5432
