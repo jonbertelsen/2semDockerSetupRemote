@@ -5,8 +5,6 @@ GRANT pg_write_all_data TO dev;
 
 CREATE
     DATABASE startcode;
-CREATE
-    DATABASE startcode_test;
 
 \c startcode
 CREATE TABLE IF NOT EXISTS public."user"

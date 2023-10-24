@@ -3,6 +3,7 @@
 
 ## Requirements
 
+- Droplet with Ubuntu
 - [Docker](https://docs.docker.com/get-docker/) Docker installed
 
 ## Features
@@ -13,60 +14,32 @@
 
 ## Setup
 
-### 1. Change the Postgres password in the docker-compose.yml file
+### 1. Find på et godt Postgres password i docker-compose.yml filen:
 
 ```bash
-    pgadmin:
-    image: dpage/pgadmin4:7.3
-    
-    .....
-    
-    environment:
-      PGADMIN_DEFAULT_EMAIL: <your_email>
-      PGADMIN_DEFAULT_PASSWORD: <your_password>
+POSTGRES_USER: postgres
+POSTGRES_PASSWORD: <dit_sikre_password> 
 ```
 
-### 2. Run Docker
+### 2. Kør Docker
 
 ```bash
   docker-compose up -d
 ```
 
-### 3. Access Traefik Dashboard through browser
+### 3. Tilføj den nye remote Postgres server i PgAdmin (på din lokale maskine)
 
-```bash
-  traefik.localhost
-```
-
-### 4. Access Postgres Dashboard through browser
-
-```bash
-  pgadmin.localhost
-```
-#### 4.1. Login
-- login: <your_email> (see docker-compose.yml)
-- password: <your_password> (see docker-compose.yml)
-
-#### 4.2. Add new server
-- Host name/address: db
+- Host name/address: <dit IP nummer på Dropletten>
 - Port: 5432
-- password: <your_password> (see docker-compose.yml)
+- password: <dit_password> (se docker-compose.yml på din Droplet)
 
-### 5. Access Your Rest Api
-
-```bash
-  <your_api_name>.localhost/<your_api_path>
-```
-
-*** 
-
-###  Stop Docker
+### Hvis du ønsker at stoppe Docker
 
 ```bash
   docker-compose down
 ```
 
-### Reset DB data installation
+### Nulstilling af Postgres (fjerner alle databaserne)
 
 (-v) // remove volumes
 ```bash
@@ -76,7 +49,3 @@
 ```bash
  sudo  rm -rf ./data
 ```
-
-***
-
-<img src="./utility/2sem-setup-local.drawio.png" alt="2 semester local environment setup">
